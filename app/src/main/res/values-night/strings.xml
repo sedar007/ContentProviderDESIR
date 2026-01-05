@@ -2,4 +2,5 @@
 <resources>
     <string name="gerer_agenda">Gérer l\'agenda</string>
     <string name="visualiser">Visualiser</string>
+    <string name="permission_denied">Permission refusée, impossible de lire l\'agenda</string>
 </resources>

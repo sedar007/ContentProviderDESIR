@@ -9,25 +9,32 @@
 
 
     <LinearLayout
-        android:layout_width="381dp"
-        android:layout_height="612dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="402dp"
+        android:layout_height="728dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="157dp"
+            android:layout_height="28dp"
+            android:text="Alphabetique"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.908"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
+
         <ListView
             android:id="@+id/listAgenda"
             android:layout_width="wrap_content"
-            android:layout_height="639dp" />
+            android:layout_height="716dp" />
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="127dp"
-        android:layout_height="32dp"
-        android:text="Alphabetique"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="20dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
