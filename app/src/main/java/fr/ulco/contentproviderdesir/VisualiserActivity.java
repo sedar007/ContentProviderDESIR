@@ -2,10 +2,13 @@ package fr.ulco.contentproviderdesir;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -56,6 +59,11 @@ public class VisualiserActivity extends AppCompatActivity {
 
     }
 
+
+    public void onClickBackButton(View view) {
+        finish();
+    }
+
     // Permet de charger les données en fonction de la permission
     private void loadDatas(){
         if (checkPermission()) {
@@ -95,7 +103,6 @@ public class VisualiserActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_READ_CALENDAR) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 loadCalendarEvents();
             } else {
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
@@ -137,11 +144,8 @@ public class VisualiserActivity extends AppCompatActivity {
                 }
             }
             cursor.close();
-
             adapter.notifyDataSetChanged();
         }
-
-
     }
     private String formatDate(long millis) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = CalendarContract.CONTENT_URI.buildUpon().appendPath("time").build();
         intent.setData(uri);
         startActivity(intent);
-
     }
 
 

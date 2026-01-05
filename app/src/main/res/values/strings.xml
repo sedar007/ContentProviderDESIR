@@ -3,4 +3,7 @@
     <string name="gerer_agenda">Gérer l\'agenda</string>
     <string name="visualiser">Visualiser</string>
     <string name="permission_denied">Permission refusée, impossible de lire l\'agenda</string>
+    <string name="super_application_agenda">Super Application Agenda</string>
+    <string name="ordre_alphab">Ordre Alphabétique</string>
+    <string name="retour">Retour</string>
 </resources>
