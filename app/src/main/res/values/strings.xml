@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ContentProviderDESIR</string>
+    <string name="gerer_agenda">Gérer l\'agenda</string>
+    <string name="visualiser">Visualiser</string>
+</resources>
