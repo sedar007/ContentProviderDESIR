@@ -48,10 +48,9 @@ public class VisualiserActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         if (checkPermission()) {
-            // Si on a déjà la permission, on charge les données
             loadCalendarEvents();
         } else {
-            // Sinon, on demande la permission à l'utilisateur
+            // Demande la permission
             requestPermission();
         }
     }
@@ -61,7 +60,6 @@ public class VisualiserActivity extends AppCompatActivity {
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
-    // 2. Demande la permission (affiche la popup système)
     private void requestPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_CALENDAR},
@@ -73,41 +71,35 @@ public class VisualiserActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_READ_CALENDAR) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // L'utilisateur a dit OUI
+
                 loadCalendarEvents();
             } else {
-                // L'utilisateur a dit NON
                 Toast.makeText(this, "Permission refusée, impossible de lire l'agenda", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    // 4. Charge les événements via le ContentProvider
+
     private void loadCalendarEvents() {
         ContentResolver cr = getContentResolver();
 
-        // On définit les colonnes qu'on veut récupérer (ici seulement le TITRE)
+        // On recupere les colonnes
         String[] projection = { CalendarContract.Events.TITLE };
-
-        // Requête sur l'URI des événements
         Cursor cursor = cr.query(CalendarContract.Events.CONTENT_URI, projection, null, null, null);
 
         if (cursor != null) {
-            eventTitles.clear(); // Nettoyer la liste avant remplissage
+            eventTitles.clear(); // vider la liste pour eviter ddes doublons
 
-            // On cherche l'index de la colonne TITLE
             int titleIndex = cursor.getColumnIndex(CalendarContract.Events.TITLE);
 
-            // On parcourt tous les résultats
             while (cursor.moveToNext()) {
                 if (titleIndex != -1) {
                     String title = cursor.getString(titleIndex);
                     eventTitles.add(title);
                 }
             }
-            cursor.close(); // Très important de fermer le curseur
+            cursor.close();
 
-            // On prévient la ListView que les données ont changé
             adapter.notifyDataSetChanged();
         }
     }
